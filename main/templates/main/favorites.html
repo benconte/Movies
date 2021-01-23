@@ -1,0 +1,52 @@
+{% extends 'main/base.html' %}
+
+{% block title %}VogFlix - Favorites{% endblock %}
+{% block content %}
+	<div class=" mb-5" style="color: #fff;margin-top: 50px;">
+		<div class="content-section mt-4">
+			{% if user.movie_favorites.exists %}
+				<h3 style="padding: 20px 35%;">You have <b id="total_favs"></b> favorite movies</h3>
+				<table class="table mt-3" style="color: #fff;">
+					<thead>
+						<th>No</th>
+						<th>Img</th>
+						<th>Name</th>
+						<th>Date released</th>
+						<th>Genre</th>
+						<th>Watch</th>
+						<th>Remove Movie</th>
+					</thead>
+					<tbody>
+						{% for movie in user.movie_favorites.all %}
+						<!-- <div>
+							
+						</div> -->
+						<tr class="tr">
+							
+								<td>{{movie.id}}</td>
+								<td><img src="{{movie.movie_image.url}}" width="50" height="45"></td>
+								<td>{{movie.name}}</td>
+								<td>{{movie.date_released}}</td>
+								<td><a href="#" class="favorite_genre">{{movie.genre.name}}</a></td>
+								<td><a href="{% url 'show_movie_data' movie.id %}" class="btn btn-danger">Watch</a></td>
+								<td><a href="{% url 'favorite_movie' movie.id %}" class="btn btn-danger" >Remove</a></td>
+								
+							
+						</tr>
+						{% endfor %}
+						<script type="text/javascript">
+							var total_favs = document.getElementById("total_favs");
+							var total_columns = document.getElementsByClassName('tr').length;
+							var s = total_columns
+							console.log(s)
+							total_favs.innerHTML = total_columns;
+						</script>
+					</tbody>
+				</table>
+			{% else %}
+				<b>No favorites movies found!!!.(To add a favorite movie choose a movie and click Add favorites)</b>
+			{% endif %}
+			<br><br><br>
+		</div>
+	</div>
+{% endblock %}

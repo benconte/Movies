@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	{% if title %}
+		<title>Vogflix - {{title}}</title>
+	{% else %}
+		<title>Vogflix</title>
+	{% endif %}
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/swiper.css' %}">
+	<link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+	<script src="{% static 'main/js/jquery-3.1.1.min.js' %}"></script>
+
+
+</head>
+<body>
+	<div class="main">
+		<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+		  <a href="{% url 'home' %}" class="navbar-brand" >Vog<strong style="font-family: 'Tangerine', serif;">F</strong>lix</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		  	<form action="/search" method="GET" class="form-inline my-lg-0">
+		  	  {% csrf_token %}
+		      <input class="search-input mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q" value="{{request.GET.query}}" id="search_input">
+		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="submit_button" ><i class="fa fa-search"></i></button>
+
+		      <script type="text/javascript">
+		      	var search_input = document.getElementById("search_input");
+		      	var submit_button = document.getElementById("submit_button");
+
+		      	search_input.addEventListener('keyup', () =>{
+		      		if(search_input.value.length > 0){
+	      				submit_button.disabled = true;
+		      			submit_button.style.cursor = "not-allowed";
+		      		}
+		      		else{
+	      				submit_button.disabled = false;
+	      				submit_button.style.cursor = "pointer";
+		      		}
+		      	});
+
+		      </script>
+		    </form>
+		    <ul class="navbar-nav mr-auto float-right">
+		      <li class="nav-item active">
+		        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="{% url 'trending' %}">Trending now</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">Discover</a>
+		      </li>
+		      <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          Genre
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <a class="dropdown-item" href="{% url 'show_genres_movies' genre=1 %}">Action</a>
+		          <a class="dropdown-item" href="{% url 'show_genres_movies' genre=2 %}">Horror</a>
+		          <a class="dropdown-item" href="{% url 'show_genres_movies' genre=3 %}">Comedy</a>
+		          <a class="dropdown-item" href="{% url 'show_genres_movies' genre=4 %}">Tv shows</a>
+
+		          <a class="dropdown-item" href="{% url 'show_genres_movies' genre=6 %}">Indians</a>
+		          <a class="dropdown-item" href="{% url 'show_genres_movies' genre=7 %}">Animes</a>
+		          <a class="dropdown-item" href="{% url 'show_genres_movies' genre=9 %}">Kids</a>
+		          <a class="dropdown-item" href="{% url 'show_genres_movies' genre=10 %}">Africans</a>
+		          <a class="dropdown-item" href="{% url 'show_genres_movies' genre=11 %}">Drama</a>
+		          <!-- <a class="dropdown-item" href="{% url 'show_genres_movies' genre=12 %}">Adventure</a> -->
+		          <div class="dropdown-divider"></div>
+		          <a class="dropdown-item" href="#">Something else here</a>
+		        </div>
+		      </li>
+		      <li class="nav-item dropdown profile">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		        		{% if user.profile.image %}
+		        			<img class="img-profile rounded-circle" src="{{user.profile.image.url}}" width="50" height="50">
+		        		{% else %}
+		        			<img class="img-profile rounded-circle" src="{% static 'main/default.png' %}" width="50" height="50">
+		        		{% endif %}
+		        		<!-- {% static 'main/default.png' %} -->
+
+		          
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <h4 class="dropdown-item" style="color: #000;">{{user.username}}</h4>
+		          <div class="dropdown-divider"></div>
+		          <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+		          <a class="dropdown-item" href="#">settings</a>
+		          <a class="dropdown-item" href="{% url 'show_favorite' %}">Favorites</a>
+		          <div class="dropdown-divider"></div>
+		          <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+		        </div>
+		      </li>
+
+		    </ul>
+		    
+		  </div>
+		</nav>
+
+		<div class="block-content" style="padding: 30px;">
+			<div class="col-lg" style="margin-top: 80px;">
+	          {% if messages %}
+	            {% for message in messages %}
+	              <div class="alert alert-{{message.tags}}">
+	                {{ message }}
+
+	              </div>
+	            {% endfor %}
+	          {% endif %}
+	          {% block content %}{% endblock %}
+	        </div>
+		</div>
+
+		
+	</div>
+
+
+	<footer class="footer">
+		<div class="copyright"><p>Copyright &copy 2021 <a href="#">www.Vog<b>F</b>lix.com</a> </p></div>
+		<div class="footermenu">
+			<ul>
+				<li><a href="">Home</a></li>
+				<li><a href="">Contact</a></li>
+				<li><a href="">Terms and conditions</a></li>
+			</ul>
+		</div>
+		<div class="tags">
+			<ul>
+				<li><button><a href="#">Watch Free Movies Trailers<a/></button></li>
+				<li><button><a href="#">Movie Trailers<a/></button></li>
+				<li><button><a href="#">English Subtitled Movies Trailers<a/></button></li>
+				<li><button><a href="#">Latest Movies Trailers<a/></button></li>
+				<li><button><a href="#">New Movies Trailers<a/></button></li>
+
+			</ul>
+		</div>
+
+	</footer>
+	
+	<script src="{% static 'main/js/swiper.min.js' %}"></script>
+	<script src="{% static 'main/js/base.js' %}"></script>
+	<script src="{% static 'main/js/slider.js' %}"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+<!-- Required meta tags -->
+    

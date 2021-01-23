@@ -1,0 +1,41 @@
+{% extends 'main/base.html' %}
+{% block title %}VogFlix - movies {% endblock %}
+{% block content %}
+  <div style="color: #fff; margin: 100px 0; ">
+    <section>
+      <div class="movie_player_container">
+        <div class="trailer">
+          <h3>Watch Trailer <a href="#" class="btn btn-danger">Trailer</a></h3>
+        </div>
+        <div class="player">
+          <video src="{{ movie.movie.url }}" poster="{{movie.movie_image.url}}" style="width: 100%;
+  height: 550px;" controls ></video>
+        </div>
+      </div>
+
+      <div class="movie_description">
+        <div class="about_movie">
+          <img src="{{movie.movie_image.url}}" width="250" height="348" style="float: left;">
+          <div class="movie_data">
+              
+              <h1>{{movie.name}}</h1>
+              <p style="margin-top: 20px;">{{movie.description}}</p>
+
+              
+              <p><a href="#"><i class="far fa-thumbs-up fa-lg"></i></a> 300 likes</p>
+              <p>Add favorite: <a href="#"><i class="far fa-heart fa-lg"></i></a></p>
+
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="comment_section">
+        <h2>Comments</h2>
+      </div>
+    </section>
+    
+    
+  </div>
+  
+{% endblock %}

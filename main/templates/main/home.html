@@ -1,0 +1,172 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}home{% endblock %}
+{% block content %}
+<div class="home-main" style="color: #fff; margin-top: 50px; padding: 0;">
+<div class="mt-3">
+    <!-- <h2 style="color: #fff;padding-bottom: 20px;">Over 500 million movies</h2>
+
+        <div class="image-container">
+          <div class="image-data">
+            <h1>Watch some of our favorite movies for free</h1>
+            <p>Sign in now and watch your favorite movies, series, tv shows and more with no ads for only 4.99 $\30 days.Download and watch movies everywhere you want for only 5.12$\M</p>
+            <button class="image-singup-button">Sign in</button>
+          </div>
+          
+          
+        </div> -->
+
+
+    <!--Slideshow starts here -->
+    
+    
+    <div class="carousel-field">
+      <div class="header">
+        <header><h1>Trending now</h1></header>
+        <div class="carousel-icons">
+          <div class="leftdirection recent-prev"><i class="fas fa-angle-left fa-2x"></i> </div>
+          <div class="nextdirection recent-next"><i class="fas fa-angle-right fa-2x ml-2"></i> </div>
+        </div>
+      </div>
+      <div class="all_slides">
+        <div class="recentslider"><!-- change the slide name also the slide icons -->
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              {% for mov in allmovies %}
+                <div class="swiper-slide">
+                  <a href="{% url 'show_movie_data' mov.id %}"><img src="{{mov.movie_image.url}}" width="280" height="300"><h3 class="hometitle">{{mov.name}}</h3></a>
+                </div>
+              {% endfor %}
+
+              <div class="swiper-slide"><a href="mostwatched.html"><img src="{% static 'main/img/others.png' %}"></a></div>
+            </div>
+            
+          </div>
+
+        </div>
+      </div>
+      
+    
+  </div>
+
+  <div class="carousel-field">
+      <div class="header">
+        <header><h1>Most popular tv Shows</h1></header>
+        <div class="carousel-icons">
+          <div class="leftdirection second-prev"><i class="fas fa-angle-left fa-2x"></i> </div>
+          <div class="nextdirection second-next"><i class="fas fa-angle-right fa-2x ml-2"></i> </div>
+        </div>
+      </div>
+      <div class="all_slides">
+        <div class="secondslider"><!-- change the slide name also the slide icons -->
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              {% for tv_show in tv_shows %}
+                <div class="swiper-slide">
+                  <a href="{% url 'show_tv_shows_data' tv_show.id %}"><img src="{{tv_show.tv_show_image_url|default_if_none:'#'}}" width="280" height="300"><h3 class="hometitle">{{tv_show.name}}</h3></a>
+                </div>
+              {% endfor %}
+
+              <div class="swiper-slide"><a href="mostwatched.html"><img src="{% static 'main/img/others.png' %}"></a></div>
+            </div>
+            
+          </div>
+
+        </div>
+      </div>
+      
+    
+  </div>
+
+  <div class="carousel-field">
+      <div class="header">
+        <header><h1>Popular series</h1></header>
+        <div class="carousel-icons">
+          <div class="leftdirection third-prev"><i class="fas fa-angle-left fa-2x"></i> </div>
+          <div class="nextdirection third-next"><i class="fas fa-angle-right fa-2x ml-2"></i> </div>
+        </div>
+      </div>
+      <div class="all_slides">
+        <div class="thirdslider"><!-- change the slide name also the slide icons -->
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              {% for mov in allmovies %}
+                <div class="swiper-slide">
+                  <a href="{% url 'show_movie_data' mov.id %}"><img src="{{mov.movie_image.url}}" width="280" height="300"><h3 class="hometitle">{{mov.name}}</h3></a>
+                </div>
+              {% endfor %}
+
+              <div class="swiper-slide"><a href="mostwatched.html"><img src="{% static 'main/img/others.png' %}"></a></div>
+            </div>
+            
+          </div>
+
+        </div>
+      </div>
+      
+    
+  </div>
+
+  <div class="carousel-field">
+      <div class="header">
+        <header><h1>This weeks specials</h1></header>
+        <div class="carousel-icons">
+          <div class="leftdirection fourth-prev"><i class="fas fa-angle-left fa-2x"></i> </div>
+          <div class="nextdirection fourth-next"><i class="fas fa-angle-right fa-2x ml-2"></i> </div>
+        </div>
+      </div>
+      <div class="all_slides">
+        <div class="fourthslider"><!-- change the slide name also the slide icons -->
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              {% for tv_show in tv_shows %}
+                <div class="swiper-slide">
+                  <a href="{% url 'show_tv_shows_data' tv_show.id %}"><img src="{{tv_show.tv_show_image_url|default_if_none:'#'}}" width="280" height="300"><h3 class="hometitle">{{tv_show.name}}</h3></a>
+                </div>
+              {% endfor %}
+
+              <div class="swiper-slide"><a href="mostwatched.html"><img src="{% static 'main/img/others.png' %}"></a></div>
+            </div>
+            
+          </div>
+
+        </div>
+      </div>
+      
+    
+  </div>
+
+  <div class="carousel-field">
+      <div class="header">
+        <header><h1>Discover 2021 popular movies</h1></header>
+        <div class="carousel-icons">
+          <div class="leftdirection fifth-prev"><i class="fas fa-angle-left fa-2x"></i> </div>
+          <div class="nextdirection fifth-next"><i class="fas fa-angle-right fa-2x ml-2"></i> </div>
+        </div>
+      </div>
+      <div class="all_slides">
+        <div class="fifthslider"><!-- change the slide name also the slide icons -->
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              {% for mov in allmovies %}
+                <div class="swiper-slide">
+                  <a href="{% url 'show_movie_data' mov.id %}"><img src="{{mov.movie_image.url}}" width="280" height="300"><h3 class="hometitle">{{mov.name}}</h3></a>
+                </div>
+              {% endfor %}
+
+              <div class="swiper-slide"><a href="mostwatched.html"><img src="{% static 'main/img/others.png' %}"></a></div>
+            </div>
+            
+          </div>
+
+        </div>
+      </div>
+      
+    
+  </div>
+    
+    
+
+</div>
+ {% endblock %}
+

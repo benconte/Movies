@@ -1,0 +1,498 @@
+@import url("href='https://fonts.googleapis.com/css?family=Tangerine'");
+body {
+  margin: 0;
+  background: #111;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 800;
+  
+}
+
+.navbar {
+  width: 100%;
+  margin: 0 auto;
+  background: rgba(0,0,0, 0.8);
+  max-width: 120%;
+  /*color: #fff;*/
+
+}
+
+header {
+  
+
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+
+}
+
+.navbar .navbar-brand {
+  float: left;
+  padding: 10px 50px;
+  font-size: 30px;
+  
+  letter-spacing: 5px;
+
+}
+
+.navbar .navbar-brand:hover{
+  text-decoration: none;
+  color: red;
+}
+
+.search-input{
+  
+  width: 350px;
+  background: transparent;
+  border-top: 1px solid #fff;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  text-align: center;
+  color: #fff;
+
+    padding: 9px 0;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 75px;
+    margin-right: 15px;
+
+}
+
+.search-input:focus{
+  outline: none;
+  border-top: 2px solid red;
+}
+
+.btn-outline-success{
+  border: none;
+  font-size: 25px;
+  background: transparent;
+  color: #fff;
+
+}
+
+.btn-outline-success:hover{
+  background-color: red;
+}
+
+/*nav {
+  float: right;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}*/
+
+.navbar-nav  li {
+  margin-left: 70px;
+
+}
+
+.navbar-nav a {
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.navbar-nav a:hover {
+  color: #fff;
+  text-decoration: none;
+
+}
+
+.navbar-nav a::before {
+  content: '';
+  display: block;
+  height: 5px;
+  background-color: red;
+
+ /* position: absolute;*/
+  top: 0;
+  width: 0%;
+
+  transition: all ease-in-out 250ms;
+}
+
+.navbar-nav a:hover::before {
+  width: 100%;
+}
+
+.navbar-nav .dropdown-menu a{
+  color: #000;
+
+}
+
+.profile .dropdown-toggle::after {
+        content: none;
+    }
+
+.profile .dropdown-toggle:hover::before {
+  width: 0%;
+}
+
+.dropdown-item:focus{
+  background-color: #777;
+}
+
+.img-profile{
+  margin: 5px 5px;
+}
+.img-profile:hover{
+    animation: loader 1s linear;
+}
+
+.table tr:hover{
+  background-color: #333;
+}
+
+.favorite_genre{
+  color: #fff;
+}
+
+.favorite_genre:hover{
+  color: red;
+  text-decoration: none;
+}
+
+fieldset a{
+  color: red;
+}
+
+fieldset a:hover{
+  color: red;
+}
+
+.profile-button button{
+  border-color: #1DB954;
+  color: #fff;
+}
+.profile-button button:hover{
+  background-color: #1DB954;
+  border-color: #1DB954;
+}
+
+@keyframes loader{
+  0%{
+    transform: rotate(0deg);
+
+  }
+  
+  100%{
+    transform: rotate(360deg);
+
+  }
+}
+
+.main-section{
+  margin-top: 20px;
+}
+
+
+.images-holder{
+  /*display: inline-block; */
+  width: 100%; 
+  margin-top: 20px; 
+
+  padding: 0;
+  
+}
+
+
+/*-----------------------------------------------------------*/
+.movie-data
+  {
+  display: inline-table;
+  
+  }
+
+
+.movie_player_container{
+  width: 100%;
+  height: 50%;
+  
+  
+}
+
+.movie_player_container .trailer{
+  margin-top: 10px;
+}
+
+.movie_player_container .player{
+  background: #000;
+}
+
+.movie_player_container .player video{
+  outline: none;
+}
+.movie_description{
+  width: 100%;
+  height: 380px;
+  background: #202020;
+  border:1px solid rgba(0,0,0, 0.3);
+  box-shadow: 0px 1px 2px rgba(0,0,0, 0.3);
+  margin-top: 50px;
+}
+
+.movie_description .about_movie{
+  padding: 10px;
+}
+
+.movie_description img{
+  margin: 10px 10px;
+  
+}
+
+.movie_data{
+  padding:20px;
+}
+
+.movie_data h1{
+  text-transform: uppercase;
+}
+
+.comment_section{
+  width: 100%;
+  height: 60px;
+  background: #000;
+  margin-top: 50px;
+}
+
+/*Home page signup not neccessary but i added it just to look nice*/
+  .image-container{
+    width: 100%;
+    height: 650px;
+    padding: 0 100px;
+    background-image: url("/static/main/img/netflix-login-orginal.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 70vh;
+    align-items: center;
+}
+
+
+.image-container .image-data{
+  color: white;
+  font-family: sans-serif;
+  float: center;
+  padding-top: 20px;
+
+}
+
+.image-container .image-data .image-singup-button{
+  color: #fff;
+  background: red;
+  padding: 10px 20px;
+  box-shadow: none;
+  border: none;
+}
+
+.image-container .image-data .image-singup-button:hover{
+  background: #c0392B;
+}   
+
+/*End of the signup*/
+
+
+.footer{
+  float: left; 
+  width: 100%; 
+  margin: 30px 0 0 0; 
+  text-align: center;
+  background: #202020;
+  border-top:1px solid rgba(0,0,0, 0.3);
+  box-shadow: 0px 1px 2px rgba(0,0,0, 0.3);
+}
+
+.copyright{
+  float: left;
+  width: 100%; 
+  text-align: center; 
+  color:#fff; 
+  font-size: 14px; 
+  padding: 20px 0;
+}
+
+.copyright p a{
+  color: #fff;
+}
+
+.copyright p a:hover{
+  color: red;
+}
+
+.footermenu{
+  float: left; 
+  width: 100%; 
+  text-align: 
+  center;
+}
+
+.footermenu ul{
+  float: left; 
+  width: 100%; 
+  text-align: center;
+}
+
+.footermenu ul li{
+  display: inline; 
+  list-style: none; 
+  padding: 0 10px;
+}
+
+.footermenu ul li a{
+  text-decoration: none; 
+  color:#fff;
+  font-size: 14px;
+}
+
+.footermenu ul li a:hover{
+  text-decoration: underline;
+}
+
+.tags{
+  float: left;
+  width: 100%; 
+  text-align: center; 
+  padding: 30px 0 100px 0;
+}
+
+.tags ul{float: left; 
+  width: 100%; 
+  text-align: center;
+}
+
+.tags ul li{
+  display: inline; 
+  list-style: none; 
+  font-size: 12px; 
+  
+}
+
+.tags ul li button{
+  padding: 0 10px; 
+  background-color: rgba(255, 255, 255, 0.02); 
+  color:rgba(255,255,255, 0.8); 
+  border-radius: 20px; 
+  border: 1px solid rgba(255,255,255, 0.1); 
+  padding: 5px 10px;
+  display: inline-block; 
+  margin: 5px 0;
+}
+.tags ul li button a{
+  outline: none;
+  text-decoration: none;
+  color: #fff;
+}
+.tags ul li button:hover{
+  background: grey;
+}
+
+
+
+.carousel-field{
+  width: 90%;
+  height: 400px;
+  /*background-color: #191919;*/
+  border:none;
+  margin-top: 20px;
+
+
+}
+
+.carousel-field .header{
+  
+  width: 111%;
+  height: 80px;
+  background-color: transparent;/* #222; */
+  color: #000;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 10px;
+}
+
+.carousel-field .header header{
+  padding: 20px;
+  float: left;
+  color: #fff;
+}
+
+.carousel-field .header .carousel-icons{
+  float: right;
+  color: #fff;
+  padding: 20px;
+
+}
+
+.carousel-field .all_slides{
+  width: 111%;
+}
+
+.desc-container{
+  width: 100%;
+  height: 500px;
+  background-color: #222;
+}
+
+.season-holder{
+  margin: 20px 0;
+  width: 75%;
+  height: 550px;
+  background-color: #222;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.season-img-display{
+  float: right;
+  width: 380px;
+  height: 550px;
+  background-color: #222;
+}
+
+
+.season-names .box{
+  margin: 14px;
+  width: 95%;
+  height: 70px;
+  background: #111;
+  display: block;
+  
+}
+
+.season-names .box:hover{
+  background-color: #333;
+}
+
+.season-play-btn{
+  float: right;
+  margin: 10px;
+  padding: 10px;
+  border: none;
+  background: #222;
+  color: #fff;
+}
+
+.season-play-btn:hover{
+  background-color: #3498DB;
+}
+
+.season-play-btn:focus{
+  outline: none;
+}
+
+.tv_show_name{
+  padding: 20px 10px; 
+  margin-left: 60px;
+  color: #bdb8d7;
+}
+
+
+.tv_show_name:hover{
+  color: #fff;
+  cursor: pointer;
+}

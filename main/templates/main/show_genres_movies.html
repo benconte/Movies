@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+{% block title %}FogFlix - Genres {% endblock %}
+{% block content %}
+		
+	<div class="genre_age" style="color: #fff; margin: 100px 0;">
+		<div class="">
+			<h2>Genre <i style="text-decoration: underline;margin-bottom: 30px;">`{{genre_movies.name}}`</i></h2>
+			
+			{% if genre_movies.movie_genre.all %}
+				
+
+					<div class="all_slides">
+				        <div class="recentslider"><!-- change the slide name also the slide icons -->
+				          <div class="swiper-container">
+				            <div class="swiper-wrapper">
+				              {% for movie in genre_movies.movie_genre.all %}
+				                <div class="swiper-slide">
+				                  <a href="{% url 'show_movie_data' movie.id %}"><img src="{{movie.movie_image.url}}" width="280" height="300"><h3 class="hometitle">{{movie.name}}</h3></a>
+				                </div>
+				              {% endfor %}
+
+				              
+				            </div>
+				            
+				          </div>
+
+				        </div>
+				     </div>
+					
+			{% else %}
+				<p>Genre has no movies or shows. Sorry for the inconvinience, a feed back has been sent we will try to solve this issue as soon as possible</p>
+			{% endif %}
+		</div>
+		
+	</div>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'main/base.html' %}
+{% block title %}VogFlix - movies {% endblock %}
+{% block content %}
+  <div style="color: #fff; margin: 90px 0; ">
+    <section>
+      <div class="movie_player_container">
+        <div class="trailer">
+          <h3>Watch Trailer <a href="#" class="btn btn-danger mb-2">Trailer</a></h3>
+        </div>
+        <div class="player">
+          <!-- <video src="{{ movie.movie.url }}" poster="{{movie.movie_image.url}}" style="width: 100%;height: 650px;" controls preload="auto"></video> -->
+
+              <video controls="controls" preload="auto" style="width: 100%; height: 650px;" poster="{{movie.movie_image.url}}">
+                  <source src="{{ movie.movie.url }}" type="video/mp4">
+                  <!-- <track src="TED.vtt" kind="subtitles" srclang="en" label="English"> -->
+               </video>
+        </div>
+      </div>
+
+      <div class="movie_description">
+        <img src="{{movie.movie_image.url}}" width="250" height="348" style="float: left;">
+        <div class="movie_data">
+            
+            <h1>{{movie.name}}</h1>
+            <i style="margin-top: 20px;">{{movie.description}}</i>
+
+            
+            <form action="{% url 'like_movie' movie.id %}" method="post" style="margin-top: 10px;">
+                {% csrf_token %}
+                {% if user.is_authenticated %}
+                  {% if liked %}
+                    {% if liked > 1 %}
+                      <button class="btn btn-danger mb-1 mr-2" name="movie_id" type="submit" value="{{ movie.id}}"><i class="far fa-thumbs-down"></i></button> <small>{{ total_likes }} Likes</small>
+                {% else %}
+                  <button class="btn btn-danger mb-1 mr-2" name="movie_id" type="submit" value="{{ movie.id}}"><i class="far fa-thumbs-down"></i></button> <small>{{ total_likes }} Like</small>
+                {% endif %}
+
+
+                  {% else %}
+                    <button class="btn btn-primary mb-1" name="movie_id" type="submit" value="{{ movie.id}}"><i class="far fa-thumbs-up"></i></button> <small> {{ total_likes }} Likes</small>
+                  {% endif %}
+                {% else %}
+                  <button class="btn btn-primary mb-1" name="movie_id" type="submit" value="{{ movie.id}}" disabled="on"><i class="far fa-thumbs-up"></i></button> <small>{{ total_likes }} Likes</small> (Must be logged in to like!! <a href="/login">Login Here</a>)
+                {% endif %}
+
+        </form>
+          <div class="favorite-section">
+            {% if user.is_authenticated %}
+                {% if is_favorite %}
+                <h5>Remove favorite: <a href="{% url 'favorite_movie' movie.id %}" ><i class="fas fa-heart fa-lg" style="color: red;"></i></a></h5>
+              {% else %}
+                <h5>Add favorite: <a href="{% url 'favorite_movie' movie.id %}"><i class="far fa-heart fa-lg" style="color: red;"></i></a></h5>
+              {% endif %}
+
+            {% else %}
+              <p>Must be logged in to add to favorites <a href="/login">Login Here</a>)</p>
+            {% endif %}
+          </div>
+
+          </div>
+      </div>
+
+      <div class="comment_section">
+        <h2>Comments</h2>
+      </div>
+    </section>
+    
+    
+  </div>
+  
+{% endblock %}

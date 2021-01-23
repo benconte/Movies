@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Vogflix - Sign in</title>
+
+    {% load crispy_forms_tags %}
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	  <style type="text/css">
+	  	body{
+	  		background-color: #222;
+	  	}
+	  	.main {
+		  padding: 0 100px;
+		  background-image: url("{% static 'register/img/netflix-login-orginal.jpg' %}");
+		  background-size: cover;
+		  background-repeat: no-repeat;
+		  height: 100%;
+		  display: flex;
+
+		}
+
+		.signin-container{
+			width: 500px;
+			height: 680px;
+			background: rgba(0,0,0,0.8);
+			/*opacity: 0.8;*/
+			margin: 20px 250px;
+
+		}
+
+		.signin-container .singin{
+			align-items: center;
+
+		}
+
+		.signin-container .singin .header{
+			padding: 20px 30px;
+			border-bottom: 1px solid #fff;
+		}
+		.signin-container .singin .header b{
+			color: #fff;
+			font-size: 40px;
+
+		}
+
+		.signin-container .singin .header p{
+			color: #fff;
+		}
+
+		.signin-container .singin .input{
+			color: #fff;
+			margin: 20px;
+			border-radius: 3px;
+			
+		}
+		.signin-container .singin .input input{
+			width: 400px;
+			height: 30px;
+			border: none;
+			background: grey;
+			opacity: 0.9;
+			color: #fff;
+		}
+
+		.signin-container .singin .submit{
+			  color: #fff;
+			  background: red;
+			  margin-left: 20px;
+			  padding: 10px 0;
+			  width: 400px;
+			  box-shadow: none;
+			  border: none;
+			  outline: none;
+			  border-radius: 30px;
+		}
+
+		.signin-container .singin .submit:hover{
+			background: #c0392B;
+		}
+
+		footer{
+	      margin: 50px 100px;
+
+	    }
+
+	  </style>
+</head>
+<body>
+	<div class="main">
+		<h2><a href="{% url 'home_start_page' %}" style="text-decoration: none; color: red; float: left; font-size: 40px;font-weight: bold;">Vlogflix</a></h2>
+		<div class="signin-container">
+			<div class="singin">
+				<div class="header">
+					<div class="container">
+	                  <div class="row">
+	                    <div class="col-sm">
+	                      {% if messages %}
+	                        {% for message in messages %}
+	                          <div class="alert alert-{{message.tags}}" style="width: 400px; ">
+	                            {{ message }}
+	                          </div>
+	                        {% endfor %}
+	                      {% endif %}
+	                      {% block content %}{% endblock %}
+	                    </div>
+	                  </div>
+
+	                </div>
+					<b>Sign In</b>
+					<p>Sign in to start watching movies</p>
+				</div>
+
+				<form action="" method="post">
+					{% csrf_token %}
+                    
+
+					<div class="input">
+						{{ form|crispy }}
+					</div>
+					<!-- <div class="input">
+						<label>Password</label><br>
+						<input type="password"  name="password" required>
+					</div> -->
+					<div class="input">
+						<small>Don't have an account, <a href="{% url 'register' %}" style="color: red;"><b>Sign up</b></a></small>
+					</div>
+					<div>
+						<input type="submit" class="submit" value="Sign in">
+					</div>
+					<div style="color: #fff; padding: 20px 30px; ">
+						<span>Read our <a href="#" style="color: red;">terms of use</a> , <a href="#" style="color: red;">privacy</a> and <a href="#" style="color: red;">policy</a></span>
+					</div>
+					
+				</form>
+			</div>
+
+			<footer><div class="small" style="color: #fff;">Copyright © 2020 - Vlogflix <br> Our  <a href="#" style="color: red;">FAQ</a></div></footer>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

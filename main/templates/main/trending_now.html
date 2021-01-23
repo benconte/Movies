@@ -1,0 +1,158 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}home{% endblock %}
+{% block content %}
+<div class="home-main" style="color: #fff; margin-top: 50px; padding: 0;">
+<div class="mt-3">
+    
+    
+    <div class="carousel-field">
+      <div class="header">
+        <header><h2>VogFlix Specials</h2></header>
+        <div class="carousel-icons">
+          <div class="leftdirection recent-prev"><i class="fas fa-angle-left fa-2x"></i> </div>
+          <div class="nextdirection recent-next"><i class="fas fa-angle-right fa-2x ml-2"></i> </div>
+        </div>
+      </div>
+      <div class="all_slides">
+        <div class="recentslider"><!-- change the slide name also the slide icons -->
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              {% for mov in popular_movies %}
+                <div class="swiper-slide">
+                  <a href="{% url 'show_movie_data' mov.id %}"><img src="{{mov.movie.movie_image.url}}" width="280" height="300"><h3 class="hometitle">{{mov.movie.name}}</h3></a>
+                </div>
+
+              {% endfor %}
+
+              <div class="swiper-slide"><a href="mostwatched.html"><img src="{% static 'main/img/others.png' %}"></a></div>
+            </div>
+            
+          </div>
+
+        </div>
+      </div>
+      
+    
+  </div>
+  <div class="carousel-field">
+      <div class="header">
+        <header><h1>Popular tv Shows</h1></header>
+        <div class="carousel-icons">
+          <div class="leftdirection second-prev"><i class="fas fa-angle-left fa-2x"></i> </div>
+          <div class="nextdirection second-next"><i class="fas fa-angle-right fa-2x ml-2"></i> </div>
+        </div>
+      </div>
+      <div class="all_slides">
+        <div class="secondslider"><!-- change the slide name also the slide icons -->
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              {% for tv_show in popular_tv_shows %}
+                <div class="swiper-slide">
+                  <a href="{% url 'show_tv_shows_data' tv_show.id %}"><img src="{{tv_show.tv_show.tv_show_image_url|default_if_none:'#'}}" width="280" height="300"><h3 class="hometitle">{{tv_show.tv_show.name}}</h3></a>
+                </div>
+              {% endfor %}
+
+              <div class="swiper-slide"><a href="mostwatched.html"><img src="{% static 'main/img/others.png' %}"></a></div>
+            </div>
+            
+          </div>
+
+
+        </div>
+      </div>
+      
+    
+  </div>
+  <div class="carousel-field">
+      <div class="header">
+        <header><h2>VogFlix Specials</h2></header>
+        <div class="carousel-icons">
+          <div class="leftdirection third-prev"><i class="fas fa-angle-left fa-2x"></i> </div>
+          <div class="nextdirection third-next"><i class="fas fa-angle-right fa-2x ml-2"></i> </div>
+        </div>
+      </div>
+      <div class="all_slides">
+        <div class="thirdslider"><!-- change the slide name also the slide icons -->
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              {% for mov in popular_movies %}
+                <div class="swiper-slide">
+                  <a href="{% url 'show_movie_data' mov.id %}"><img src="{{mov.movie.movie_image.url}}" width="280" height="300"><h3 class="hometitle">{{mov.movie.name}}</h3></a>
+                </div>
+
+              {% endfor %}
+
+              <div class="swiper-slide"><a href="mostwatched.html"><img src="{% static 'main/img/others.png' %}"></a></div>
+            </div>
+            
+          </div>
+
+        </div>
+      </div>
+      
+    
+  </div>
+  <div class="carousel-field">
+      <div class="header">
+        <header><h1>Popular tv Shows</h1></header>
+        <div class="carousel-icons">
+          <div class="leftdirection fourth-prev"><i class="fas fa-angle-left fa-2x"></i> </div>
+          <div class="nextdirection fourth-next"><i class="fas fa-angle-right fa-2x ml-2"></i> </div>
+        </div>
+      </div>
+      <div class="all_slides">
+        <div class="fourthslider"><!-- change the slide name also the slide icons -->
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              {% for tv_show in popular_tv_shows %}
+                <div class="swiper-slide">
+                  <a href="{% url 'show_tv_shows_data' tv_show.id %}"><img src="{{tv_show.tv_show.tv_show_image_url|default_if_none:'#'}}" width="280" height="300"><h3 class="hometitle">{{tv_show.tv_show.name}}</h3></a>
+                </div>
+              {% endfor %}
+
+              <div class="swiper-slide"><a href="mostwatched.html"><img src="{% static 'main/img/others.png' %}"></a></div>
+            </div>
+            
+          </div>
+          
+
+        </div>
+      </div>
+      
+    
+  </div>
+
+  <div class="carousel-field">
+      <div class="header">
+        <header><h2>VogFlix Specials</h2></header>
+        <div class="carousel-icons">
+          <div class="leftdirection fifth-prev"><i class="fas fa-angle-left fa-2x"></i> </div>
+          <div class="nextdirection fifth-next"><i class="fas fa-angle-right fa-2x ml-2"></i> </div>
+        </div>
+      </div>
+      <div class="all_slides">
+        <div class="fifthslider"><!-- change the slide name also the slide icons -->
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              {% for mov in popular_movies %}
+                <div class="swiper-slide">
+                  <a href="{% url 'show_movie_data' mov.id %}"><img src="{{mov.movie.movie_image.url}}" width="280" height="300"><h3 class="hometitle">{{mov.movie.name}}</h3></a>
+                </div>
+
+              {% endfor %}
+
+              <div class="swiper-slide"><a href="mostwatched.html"><img src="{% static 'main/img/others.png' %}"></a></div>
+            </div>
+            
+          </div>
+
+        </div>
+      </div>
+      
+    
+  </div>
+
+</div>
+ {% endblock %}
+

@@ -1,0 +1,57 @@
+{% extends 'main/base.html' %}
+{% block title %}FogFlix - Genres {% endblock %}
+{% block content %}
+	<div class="genre_age" style="color: #fff; margin: 100px 0;">
+		<div class="">
+			
+			{% if query_result %}
+				<h2>Results found: <i style="margin-bottom: 30px;">{{max_results}}</i></h2>
+				{% for movie in query_result %}
+					<div class="all_slides">
+				        <div class="recentslider"><!-- change the slide name also the slide icons -->
+				          <div class="swiper-container">
+				            <div class="swiper-wrapper">
+				              {% for movie in query_result %}
+				                <div class="swiper-slide">
+				                  <a href="{% url 'show_movie_data' movie.id %}"><img src="{{movie.movie_image.url}}" width="280" height="300"><h3 class="hometitle">{{movie.name}}</h3></a>
+				                </div>
+				              {% endfor %}
+
+				              
+				            </div>
+				            
+				          </div>
+
+				        </div>
+				     </div>
+					
+				{% endfor %}
+			{% elif sec_match %}
+				<h2>Results found: <i style="margin-bottom: 30px;">{{max_results_sec_match}}</i></h2>
+				<div class="all_slides">
+			        <div class="recentslider"><!-- change the slide name also the slide icons -->
+			          <div class="swiper-container">
+			            <div class="swiper-wrapper">
+			              {% for tv_show in sec_match %}
+			                <div class="swiper-slide">
+			                  <a href="{% url 'show_tv_shows_data' tv_show.id %}"><img src="{{tv_show.tv_show_image.url}}" width="280" height="300"><h3 class="hometitle">{{tv_show.name}}</h3></a>
+			                </div>
+			              {% endfor %}
+
+			              
+			            </div>
+			            
+			          </div>
+
+			        </div>
+			     </div>
+					
+				
+			{% else %}
+				<p>No results found.Try searching with the name of the movie, tv shows, tv series and more</p>
+			{% endif %}
+		</div>
+		
+	</div>
+
+{% endblock %}

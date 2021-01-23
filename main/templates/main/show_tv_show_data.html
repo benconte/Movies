@@ -1,0 +1,115 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}VogFlix - movies {% endblock %}
+{% block content %}
+  <div style="color: #fff; margin: 90px 0; ">
+      <div class="movie_description desc-container">
+        <img src="{{tv_show.tv_show_image.url}}" width="340" height="480" style="float: left;">
+        <div class="movie_data">
+            
+            <h1>{{tv_show.name}}</h1>
+            <div >
+              <i style="margin-top: 20px;" id="description">{{tv_show.Tv_shows_description}}</i>
+
+              <script type="text/javascript">
+                var desc = document.getElementById("description").innerHTML;
+                
+                if (desc.length < 1000) {
+
+                  document.getElementById("description").innerHTML = desc;
+                } else {
+                  var content = '';
+                  for (var i = 0; i < desc.length; i++) {
+                    content = content + desc[i];
+                    
+                    if (i === 1000) {
+                      break;
+                    } else if (i < 1000) {
+                      continue;
+                    }
+                    else{
+                      break;
+                    }
+                  }
+                  content = content + ".... <a href='#' onclick='show_description();'>more</a>";
+                  document.getElementById("description").innerHTML = content;
+                }
+
+                function show_description(){
+                  alert(desc);
+                }
+              </script>
+            </div>
+            
+
+            <br><br>
+            <p>Genre: <i style="color: red; cursor: pointer;">{{tv_show.genre.name}}</i></p>
+            <p>Date released: <i style="color: red; cursor: pointer;">{{tv_show.date_released|date:"F d, Y"}}</i></p>
+
+
+          </div>
+      </div>
+      <div class="season-display">
+
+        <div class="season-img-display" id="img_holder">
+          {% if tv_show.Tv_shows_seasons.all %}
+            <h5 class="text-muted" style="padding: 200px 50px;"> Hover on the image to see it</h5>
+          {% else %}
+            <h5 class="text-muted" style="padding: 200px 50px;"> Nothing to display</h5>
+          {% endif %}
+        </div>
+        <div class="season-holder">
+          <div class="seasons">
+            {% if tv_show.Tv_shows_seasons.all %}
+            <div class="seasons-header">
+              <h2 style="padding: 10px;">Seasons</h2>
+              <hr style="border: 1px solid #fff;">
+            </div>
+            <div class="season-names" id="s_img">
+              
+                {% for tv_shw in tv_show.Tv_shows_seasons.all %}
+                <div class="box" >
+                  <a href="{% url 'play_tv_show' tv_shw.id %}" style="text-decoration: none;">
+                    <img src="{{tv_shw.tv_show_image.url}}" width="60" height="60" style="float: left;margin: 5px;" id="img">
+                    <button class="season-play-btn">Play Season</button>
+                    <p class="tv_show_name">{{tv_show.name}} : {{tv_shw.name}}</p>
+                  </a>
+                  
+
+                </div>
+                {% endfor %}
+              
+              
+            </div>
+            {% else %}
+              <h3 style="padding: 20%;">Looks like this show doesn't have any seasons yet <i class="far fa-grin-beam-sweat"></i><i class="far fa-frown ml-1"></i>
+                <br>
+                <a href="/" style="margin-left: 280px; color: red;">Back</a>
+              </h3>
+              
+              
+            {% endif %}
+          </div>
+            
+        </div>
+
+      </div>
+      
+    
+  </div>
+  
+
+<!-- <script>
+  var img_holder = document.getElementById("img_holder");
+  var season_name = document.getElementById("s_img").getElementsByTagName('img');
+
+  for(var i = 0; i <= season_name.length; i++){
+    season_name[i].addEventListener('mouseover', function() {
+      var IMGSRC = this.getAttribute('src');
+      img_holder.innerHTML = "<img src="+IMGSRC+" width='"+230+"' height='"+480+"'";
+    });
+  }
+</script> -->
+
+{% endblock %}
+
